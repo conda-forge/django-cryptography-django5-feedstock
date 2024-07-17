@@ -5,14 +5,17 @@ package:
   name: {{ name|lower }}
   version: {{ version }}
 
+#source:
+  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/django_cryptography_django5-{{ version }}.tar.gz
+  #sha256: b149685032cbbaf8b88c1b3ff6d8de7a107bb1b3cff9e84e9b32d0c61ca08346
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/django_cryptography_django5-{{ version }}.tar.gz
-  sha256: b149685032cbbaf8b88c1b3ff6d8de7a107bb1b3cff9e84e9b32d0c61ca08346
+  url: https://github.com/chrisclark/django-cryptography/archive/{{ version }}.tar.gz
+  sha256: a250af91c6d7b01845caa14eda65255323d1d9900358fcdd53c24945c8b382e6
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 2
 
 requirements:
   host:
