@@ -12,9 +12,11 @@ package:
 source:
   url: https://github.com/chrisclark/django-cryptography/archive/${{ version }}.tar.gz
   sha256: a250af91c6d7b01845caa14eda65255323d1d9900358fcdd53c24945c8b382e6
+  patches:
+    - patches/0001-mark-2.2-release-final.patch
 
 build:
-  number: 4
+  number: 5
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -37,6 +39,8 @@ tests:
         - django_cryptography
       python_version: ${{ python_min }}.*
       pip_check: true
+  - script:
+      - python -c "from importlib.metadata import version; v = version('django-cryptography-django5'); assert v == '${{ version }}', v"
 
 about:
   summary: Easily encrypt data in Django - Fork for Django 5 support
